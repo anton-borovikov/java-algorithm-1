@@ -11,6 +11,7 @@ public class Main {
         String str = "Moscow";
         int[] numbers = {10, 20, 15};
         int fiboNum = 5;
+        final double EPS = 0.000001;
 
         System.out.printf("Factorial of %d is %d\n", n, main.getFactorial(n));
         System.out.printf("Recursion Factorial of %d is %d\n", n, main.getFactorialRecursion(n));
@@ -28,6 +29,23 @@ public class Main {
 
         System.out.printf("Array of %d Fibo: ", fiboNum);
         printFiboArray(fiboNum);
+
+        System.out.printf("\n\nPI with %f precision is %f", EPS, countPI(EPS));
+
+    }
+
+    private static double countPI(double EPS) {
+        int factor = -4;
+        double n = 1;
+        double myPI = 4;
+
+        while (Math.abs(myPI - Math.PI) > EPS) {
+            myPI += factor/(n*2+1);
+            n++;
+            factor = -factor;
+        }
+
+        return myPI;
     }
 
     private static void printFiboArray(int fiboNum) {
